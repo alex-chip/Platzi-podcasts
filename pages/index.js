@@ -1,6 +1,7 @@
 import 'isomorphic-fetch'
 import { Fragment } from 'react'
 import Link from 'next/link'
+import Header from '../src/components/Header'
 
 export default class extends React.Component {
 
@@ -14,42 +15,33 @@ export default class extends React.Component {
     const { channels } = this.props
 
     return <Fragment>
-      <header className='Header'>
-        <h1 className='Header-title'>Podcasts</h1>
-      </header>
+      <Header/>
 
-      <div className="Channels">
-        { channels.map((channel) => (
-          <Link href="/channel" prefetch>
-            <a className="Channel" key={ channel.id }>
-              <img className='Channel-img' src={ channel.urls.logo_image.original } alt="Logo"/>
-              <h2 className='Channel-title'>{ channel.title }</h2>
-            </a>
-          </Link>
-        )) }
+      <div className="Container">
+        <div className="Channels">
+          { channels.map((channel) => (
+            <Link href={`/channel?id=${ channel.id }`} prefetch>
+              <a className="Channel" key={ channel.id }>
+                <img className='Channel-img' src={ channel.urls.logo_image.original } alt="Logo"/>
+                <h2 className='Channel-title'>{ channel.title }</h2>
+              </a>
+            </Link>
+          )) }
+        </div>
       </div>
 
-      <style jsx>{`
-        .Header {
-          background: #1B55D0;
-          padding: 15px;
-          text-align: center;
-          margin-bottom: 2em;
-        }
 
-        .Header-title {
-          font-weight: bold;
-          color: #fff;
-          margin: 0;
-          font-size: 32px;
+      <style jsx>{`
+
+        .Container {
+          max-width: 1200px;
+          margin: 0 auto;
         }
 
         .Channels {
           display: grid;
           grid-gap: 25px;
           grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-          max-width: 1200px;
-          margin: 0 auto;
         }
 
         .Channel {
