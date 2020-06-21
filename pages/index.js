@@ -20,10 +20,12 @@ export default class extends React.Component {
 
       <div className="Channels">
         { channels.map((channel) => (
-          <a className="Channel" key={ channel.id }>
-            <img className='Channel-img' src={ channel.urls.logo_image.original } alt="Logo"/>
-            <h2 className='Channel-title'>{ channel.title }</h2>
-          </a>
+          <Link href="/channel" prefetch>
+            <a className="Channel" key={ channel.id }>
+              <img className='Channel-img' src={ channel.urls.logo_image.original } alt="Logo"/>
+              <h2 className='Channel-title'>{ channel.title }</h2>
+            </a>
+          </Link>
         )) }
       </div>
 
@@ -60,7 +62,7 @@ export default class extends React.Component {
         .Channel-img {
           border-radius: 5px 5px 0 0;
           box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
-          width: 100%;
+          max-width: 100%;
           display: block;
         }
 
