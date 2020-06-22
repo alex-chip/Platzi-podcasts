@@ -2,6 +2,7 @@ import 'isomorphic-fetch'
 import { Fragment } from 'react'
 import Link from 'next/link'
 import Header from '../src/components/Header'
+import Footer from '../src/components/Footer'
 
 export default class extends React.Component {
 
@@ -19,8 +20,8 @@ export default class extends React.Component {
 
       <div className="Container">
         <div className="Channels">
-          { channels.map((channel) => (
-            <Link href={`/channel?id=${ channel.id }`} prefetch>
+          { channels.map((channel, key) => (
+            <Link key={key} href={`/channel?id=${ channel.id }`} prefetch>
               <a className="Channel" key={ channel.id }>
                 <img className='Channel-img' src={ channel.urls.logo_image.original } alt="Logo"/>
                 <h2 className='Channel-title'>{ channel.title }</h2>
@@ -29,6 +30,8 @@ export default class extends React.Component {
           )) }
         </div>
       </div>
+
+      <Footer/>
 
 
       <style jsx>{`
@@ -42,6 +45,7 @@ export default class extends React.Component {
           display: grid;
           grid-gap: 25px;
           grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+          margin-bottom: 3em;
         }
 
         .Channel {

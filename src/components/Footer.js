@@ -1,30 +1,29 @@
 import { Fragment } from "react";
 
-const Header = () => {
+const Footer = () => {
   return (
     <Fragment>
-      <header className='Header'>
-        <h2 className='Header-title'>Podcasts</h2>
+      <header className='Footer'>
+        <h6 className='Footer-title'>Platzi Podcasts - Next.js</h6>
       </header>
 
       <style jsx>{`
-        .Header {
-          background: #1B55D0;
+        .Footer {
+          background: #202543;
           padding: 15px;
           text-align: center;
-          margin-bottom: 2em;
           color: #FFF;
         }
 
-        .Header-title {
+        .Footer-title {
           font-weight: bold;
           color: #fff;
           margin: 0;
-          font-size: 26px;
+          font-size: 16px;
         }
       `}</style>
     </Fragment>
   )
 }
 
-export default  Header;
+export default  Footer;
