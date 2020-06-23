@@ -1,13 +1,9 @@
-import { Fragment } from "react"
-
-import Header from '../src/components/Header'
 import Link from "next/link"
-import Footer from "../src/components/Footer"
+import Layout from "../components/Layout"
 
 const Channel = ({ channel, audioClips, series }) => {
   return(
-    <Fragment>
-      <Header />
+    <Layout title={channel.title}>
       <div className='Container'>
       <div className='Banner'>
         <img className='Banner-img' src={ channel.urls.logo_image.original } alt="Logo"/>
@@ -30,25 +26,28 @@ const Channel = ({ channel, audioClips, series }) => {
           </div>
         }
 
-        <h2 className='Title'>Ultimos Podcasts</h2>
-        { audioClips.map((clip, key) => (
-          <Link href={`/podcast?id=${clip.id}`} key={key}>
-            <ul className='Podcast-list'>
-              <li className='Podcast-item'>
-                <a className='Podcast-link'>
-                  {clip.title}
-                  <span className='Podcast-meta'>
-                    { Math.ceil( clip.duration / 60 ) } minutes
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </Link>
-          ))
+        { audioClips.length > 0 &&
+          <>
+            <h2 className='Title'>Ultimos Podcasts</h2>
+            { audioClips.map((clip, key) => (
+              <Link href={`/podcast?id=${clip.id}`} key={key}>
+                <ul className='Podcast-list'>
+                  <li className='Podcast-item'>
+                    <a className='Podcast-link'>
+                      {clip.title}
+                      <span className='Podcast-meta'>
+                        { Math.ceil( clip.duration / 60 ) } minutes
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </Link>
+              ))
+            }
+          </>
         }
 
       </div>
-      <Footer/>
 
       <style jsx>{`
 
@@ -74,7 +73,8 @@ const Channel = ({ channel, audioClips, series }) => {
         .Title-Channel {
           color: #FFF;
           text-align: center;
-          font-size: 32px;
+          font-size: 26px;
+          font-style: italic;
           position: absolute;
           z-index: 10;
           bottom: 0;
@@ -155,7 +155,7 @@ const Channel = ({ channel, audioClips, series }) => {
           background: white;
         }
       `}</style>
-    </Fragment>
+    </Layout>
   )
 }
 

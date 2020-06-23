@@ -1,12 +1,11 @@
 import { Fragment } from "react"
 
-import Header from '../src/components/Header'
 import Link from "next/link"
+import Layout from "../components/Layout"
 
 const Podcast = ({ clip }) => {
   return(
-    <Fragment>
-      <Header />
+    <Layout title={clip.title}>
       <div className='Container'>
 
           <div className='clip'>
@@ -136,7 +135,7 @@ const Podcast = ({ clip }) => {
           background: white;
         }
       `}</style>
-    </Fragment>
+    </Layout>
   )
 }
 
