@@ -1,30 +1,21 @@
-import { Fragment } from "react"
+import { Fragment } from 'react'
 import Link from 'next/link'
 
 const ChannelGrid = ({ channels }) => {
   return (
     <Fragment>
-      <div className="Container">
-          <div className="Channels">
-            { channels.map((channel, key) => (
-              <Link key={key} href={`/channel?id=${ channel.id }`} prefetch>
-                <a className="Channel" key={ channel.id }>
-                  <img className='Channel-img' src={ channel.urls.logo_image.original } alt="Logo"/>
-                  <h2 className='Channel-title'>{ channel.title }</h2>
-                </a>
-              </Link>
-            )) }
-          </div>
-        </div>
+      <div className="Channels">
+        { channels.map((channel, key) => (
+          <Link key={key} href={`/channel?id=${ channel.id }`} prefetch>
+            <a className="Channel" key={ channel.id }>
+              <img className='Channel-img' src={ channel.urls.logo_image.original } alt="Logo"/>
+              <h2 className='Channel-title'>{ channel.title }</h2>
+            </a>
+          </Link>
+        )) }
+      </div>
 
-        <style jsx>{`
-
-        .Container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 2em;
-        }
-
+      <style jsx>{`
         .Channels {
           display: grid;
           grid-gap: 25px;
