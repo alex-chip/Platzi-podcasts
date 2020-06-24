@@ -1,9 +1,9 @@
 // import Link from 'next/link'
-import Error from 'next/error'
 import Layout from '../components/Layout'
 import BannerChannel from '../components/BannerChannel'
 import Series from '../components/Series'
 import AudioClips from '../components/AudioClips'
+import Error from './_error'
 
 const Channel = ({ channel, audioClips, series, statusCode }) => {
   if (statusCode !== 200 ) {
