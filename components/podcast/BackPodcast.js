@@ -1,11 +1,16 @@
 import { Fragment } from 'react'
-import Link from 'next/link'
+import { Link } from '../../routes'
+import slug from '../../helpers/slug'
 
 const BackPodcast = ({ clip }) => {
   return(
     <Fragment>
       <nav className='Menu-back'>
-        <Link href={`/channel?id=${clip.channel.id}`}>
+        <Link route='channel' params={{
+          slug: slug(clip.channel.title),
+          id: clip.channel.id
+        }}>
+        {/* <Link href={`/channel?id=${clip.channel.id}`}> */}
           <a className='Button-back'>&#11013;</a>
         </Link>
         <span>Volver</span>

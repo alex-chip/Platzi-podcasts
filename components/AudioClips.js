@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
-import Link from 'next/link'
+import { Link } from '../routes'
+import slug from '../helpers/slug'
 
 const AudioClips = ({ audioClips }) => {
   return(
@@ -8,7 +9,12 @@ const AudioClips = ({ audioClips }) => {
         <>
           <h2 className='Title'>Ultimos Podcasts</h2>
           { audioClips.map((clip, key) => (
-            <Link href={`/podcast?id=${clip.id}`} key={key}>
+            <Link key={key} route='podcast' params={{
+              slugChannel: slug(clip.channel.title),
+              idChannel: clip.channel.id,
+              slug: slug(clip.title),
+              id: clip.id
+            }}>
               <ul className='Podcast-list'>
                 <li className='Podcast-item'>
                   <a className='Podcast-link'>

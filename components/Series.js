@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
-import Link from 'next/link'
+import { Link } from '../routes'
+import slug from '../helpers/slug'
 
 const Series = ({ series }) => {
   return(
@@ -9,7 +10,10 @@ const Series = ({ series }) => {
           <h2 className='Title'>Series</h2>
           <div className='Channels'>
             { series.map((serie, key) => (
-              <Link key={key} href={`/channel?id=${serie.id}`}>
+              <Link key={key} route='channel' params={{
+                slug: slug(serie.title),
+                id: serie.id
+              }}>
                 <a className='Channel'>
                   <img className='Channel-img' src={serie.urls.logo_image.original} alt={serie.title} />
                   <h3 className='Serie-title' key={key}>{serie.title}</h3>

@@ -1,12 +1,18 @@
 import { Fragment } from 'react'
-import Link from 'next/link'
+// import Link from 'next/link'
+import { Link } from '../routes'
+import slug from '../helpers/slug'
 
 const ChannelGrid = ({ channels }) => {
   return (
     <Fragment>
       <div className="Channels">
         { channels.map((channel, key) => (
-          <Link key={key} href={`/channel?id=${ channel.id }`} prefetch>
+          <Link key={key} route='channel' params={{
+            slug: slug(channel.title),
+            id: channel.id
+          }}>
+          {/* <Link key={key} href={`/channel?id=${ channel.id }`} prefetch> */}
             <a className="Channel" key={ channel.id }>
               <img className='Channel-img' src={ channel.urls.logo_image.original } alt="Logo"/>
               <h2 className='Channel-title'>{ channel.title }</h2>
